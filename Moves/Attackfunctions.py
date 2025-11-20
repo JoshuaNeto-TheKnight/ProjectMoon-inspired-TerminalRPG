@@ -67,9 +67,10 @@ class Attackpower:
         return Finalpower
 
     def clashing(self, target, selfsanity, targetsanity):
+        #coins are saved here
         selfcoinamount = self.count
         targetcoinamount = target.count
-        while True:
+        while True: #rolls until one of them have no coins available to use
             if self.count == 0 or target.count == 0:
                 break
             YourRolls = self.rolls(selfsanity)
@@ -88,7 +89,7 @@ class Attackpower:
             else:
                 print("clash tie!")
                 time.sleep(2)
-            clashcount += 1
+            clashcount += 1 #not really useful right now
             print(f'Clash {clashcount}!')
         if self.count == 0:
             print("Clash lost...")
@@ -100,11 +101,6 @@ class Attackpower:
             self.count = selfcoinamount
             target.count = targetcoinamount 
             return self.name
-
-
-
-
-
 #Testing
 LordLuS2 = Attackpower(3,3,4,2, 'Serious slashes')
 Tanglecleaver = Attackpower(6, 4, 3, 5, 'Lets dance.')
