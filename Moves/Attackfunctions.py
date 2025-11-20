@@ -2,10 +2,12 @@ import random
 import time
 
 class Attackpower:
-    def __init__(self, base, power, count):
+    def __init__(self, base, power, count, offensive, name):
         self.__base = base
         self.__power = power
         self.__count = count
+        self.__off = offensive
+        self.__name = name
 
     @property
     def base(self):
@@ -27,6 +29,20 @@ class Attackpower:
     @count.setter
     def count(self, new):
         self.__count = new
+    
+    @property
+    def off(self):
+        return self.__off
+    @off.setter
+    def off(self, new):
+        self.__off = new
+
+    @property
+    def name(self):
+        return self.__name
+    @name.setter
+    def name(self, new):
+        self.__name = new
 
     def rolls(self, sanity): #here we obtain the base, coin power and coin count on the self, and also obtain the sanity number
         FinalpowerReady = False #here is a conditional so the function runs until said
@@ -48,13 +64,54 @@ class Attackpower:
             FinalpowerReady = True #finally, exits out of the 'while' we set up, signaling the power is ready
             time.sleep(1.5)
         print(f'Final power obtained: {Finalpower}') #prints out the final result
+        return Finalpower
 
-#ADD CLASHING YOU DUMMY!!!!!!!!!!!!!!!!!
+    def clashing(self, target, selfsanity, targetsanity):
+        selfcoinamount = self.count
+        targetcoinamount = target.count
+        while True:
+            if self.count == 0 or target.count == 0:
+                break
+            YourRolls = self.rolls(selfsanity)
+            TheirRolls = target.rolls(targetsanity)
+            print(f' You rolled {YourRolls}!')
+            print(f' Target rolled {TheirRolls}!') 
+            time.sleep(2)
+            if YourRolls > TheirRolls:
+                target.count -= 1
+                print(f'you have {self.count} coins left and the target has {target.count} left!')
+                time.sleep(0.5)            
+            elif TheirRolls > YourRolls: 
+                self.count -= 1
+                print(f'you have {self.count} coins left and the target has {target.count} left!')
+                time.sleep(0.5)            
+            else:
+                print("clash tie!")
+                time.sleep(2)
+            clashcount += 1
+            print(f'Clash {clashcount}!')
+        if self.count == 0:
+            print("Clash lost...")
+            self.count = selfcoinamount
+            target.count = targetcoinamount 
+            return target.name
+        elif target.count == 0:
+            print("Clash won!!!")
+            self.count = selfcoinamount
+            target.count = targetcoinamount 
+            return self.name
 
-Tanglecleaver = Attackpower(6, 4, 3)
-SelfDestructivePurge = Attackpower(30, -12, 3)
-Tanglecleaver.rolls(30)
-SelfDestructivePurge.rolls(-30)
-LordLuS2 = Attackpower(3,3,4)
-LordLuS2.rolls(1)
+
+
+
+
+#Testing
+LordLuS2 = Attackpower(3,3,4,2, 'Serious slashes')
+Tanglecleaver = Attackpower(6, 4, 3, 5, 'Lets dance.')
+SelfDestructivePurge = Attackpower(30, -12, 3, 2, 'I AM WASHED')
+winner = Tanglecleaver.clashing(SelfDestructivePurge, 20, -20 )
+print(winner)
+winner = Tanglecleaver.clashing(LordLuS2, 20, 20)
+print(f'{winner} won!')
+
 

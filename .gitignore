@@ -4,3 +4,5 @@ ideal.png
 Events/Rawfunctions.py
 Events/Enemylists.py
 .vscode/settings.json
+__pycache__/Attackfunctions.cpython-313.pyc
+__pycache__/Enemylists.cpython-313.pyc
