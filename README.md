@@ -5,27 +5,6 @@ Currently testing the defense system to implement it in the game, it will take a
 So the battle simulator will soon be ready to go!
 Thank you for your patience ghost specatators
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 /Note to self/
 Git terminal steps...
 - I. git add (arquivo)

@@ -1,8 +1,9 @@
 import random
 
 #functions that define the defense type
+#still doesnt meet my standards, will be updated
 
-def Counter(HP: int, ENEMYDMG: int , DEF: int):
+def Counter(HP: int, DEF: int,ENEMYDMG: int ):
     CurrentHP = HP - ENEMYDMG
     if CurrentHP == HP:
         print('Action failed.')
@@ -15,11 +16,11 @@ def Counter(HP: int, ENEMYDMG: int , DEF: int):
     """
     Counters you take damage but you deal a higher sum of damage back, will tweak the dmg value later
     """
-def Guard(MAXHP: int, DEF: int, ENEMYDMG: int):
+def Guard(HP: int, DEF: int, ENEMYDMG: int):
     """
     Guards will make you generate artificial HP to tank some of the damage off, reducing the enemy dmg total
     """
-    ReducedDMG = int((MAXHP * 0.1) * DEF)
+    ReducedDMG = int((HP * 0.1) * DEF)
     print('Block value:', ReducedDMG)
     FinalDMG = ReducedDMG - ENEMYDMG
     if FinalDMG > 0:
@@ -43,7 +44,7 @@ def Evade(HP, DEF, ENEMYDMG):
         DMG = ENEMYDMG
         print('Failed.')
         return DMG
-    
+"""    
 ENEMYDMG = random.randint(0,10)
 MAXHP = 20
 HP = 25
@@ -75,3 +76,4 @@ print('Damage taken:', totaldmg)
 if totaldmg > 0:
     HP = HP - totaldmg
     print('New HP:' , HP)
+    """
